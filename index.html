@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#5b539b" />
+    <title>Quantlab | Stock Deploy Order</title>
+    <link rel="manifest" href="manifest.webmanifest?v=quantlab-52week-20260618" />
+    <link rel="stylesheet" href="styles.css?v=quantlab-52week-20260618" />
+  </head>
+  <body>
+    <main class="login-shell" id="loginScreen">
+      <div class="brand-bar" aria-label="Quantlab Stock Deploy Order">
+        <img class="brand-logo" src="quantlab-logo.svg?v=quantlab-52week-20260618" alt="Quantlab Wealth" />
+      </div>
+      <section class="entry-panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Quantlab Client Records</p>
+            <h1>Quantlab Stock Deploy Order Login</h1>
+          </div>
+        </div>
+
+        <form id="loginForm" autocomplete="off">
+          <label>
+            <span>User Code</span>
+            <input id="loginCode" name="loginCode" type="text" placeholder="ADMIN or C001" required />
+          </label>
+
+          <label>
+            <span>Password</span>
+            <input id="loginPassword" name="loginPassword" type="password" required />
+          </label>
+
+          <button class="primary" type="submit">Login</button>
+          <p class="helper-text">Default admin login: User Code ADMIN, Password admin123</p>
+          <p class="helper-text" id="loginMessage"></p>
+        </form>
+      </section>
+    </main>
+
+    <main class="app-shell">
+      <header class="topbar">
+        <div class="brand-title">
+          <img class="brand-logo" src="quantlab-logo.svg?v=quantlab-52week-20260618" alt="Quantlab Wealth" />
+          <div>
+            <p class="eyebrow">Quantlab Client Records</p>
+            <h1>Quantlab Stock Deploy Order</h1>
+            <p class="session-text" id="sessionText"></p>
+          </div>
+        </div>
+        <div class="top-actions">
+          <button class="icon-button" id="exportBtn" type="button" title="Export CSV" aria-label="Export CSV">
+            CSV
+          </button>
+          <button class="secondary small-button" id="logoutBtn" type="button">Logout</button>
+        </div>
+      </header>
+
+      <nav class="admin-tabs" id="adminTabs" aria-label="Application pages">
+        <button class="tab-button is-active" type="button" data-admin-view="users" aria-selected="true">User Additions</button>
+        <button class="tab-button" type="button" data-admin-view="stock" aria-selected="false">User Stock Entry</button>
+      </nav>
+
+      <section class="entry-panel admin-panel" id="userPanel" aria-labelledby="userTitle">
+        <div class="section-heading">
+          <h2 id="userTitle">User Additions</h2>
+          <span id="userCount">0 users</span>
+        </div>
+
+        <form id="userForm" autocomplete="off">
+          <div class="two-column">
+            <label>
+              <span>User Code</span>
+              <input id="newUserCode" name="newUserCode" type="text" placeholder="Example: C001" required />
+            </label>
+
+            <label>
+              <span>User Name</span>
+              <input id="newUserName" name="newUserName" type="text" placeholder="Client name" required />
+            </label>
+          </div>
+
+          <label>
+            <span>Broker</span>
+            <select id="newUserBroker" name="newUserBroker" required>
+              <option value="">Select broker</option>
+              <option value="Kotak Neo">Kotak Neo</option>
+              <option value="SMC Global">SMC Global</option>
+            </select>
+          </label>
+
+          <p class="helper-text">Client default password: 123</p>
+          <p class="helper-text">Backend version: reset-password-v2</p>
+
+          <div class="actions user-form-actions">
+            <button class="secondary" id="cancelUserEditBtn" type="button">Clear Edit</button>
+            <button class="primary" id="saveUserBtn" type="submit">Create / Update User</button>
+          </div>
+        </form>
+
+        <form id="adminPasswordForm" class="admin-password-form" autocomplete="off">
+          <div class="two-column">
+            <label>
+              <span>Current Admin Password</span>
+              <input id="currentAdminPassword" name="currentAdminPassword" type="password" required />
+            </label>
+
+            <label>
+              <span>New Admin Password</span>
+              <input id="newAdminPassword" name="newAdminPassword" type="password" minlength="6" required />
+            </label>
+          </div>
+
+          <button class="secondary" type="submit">Change Admin Password</button>
+        </form>
+
+        <div class="records-list user-list" id="userList"></div>
+      </section>
+
+      <div class="stock-entry-page" id="stockEntryPage">
+        <section class="account-password-panel" id="accountPasswordPanel" aria-labelledby="accountPasswordTitle">
+          <button class="password-toggle" id="accountPasswordToggle" type="button" aria-expanded="false">
+            <span id="accountPasswordTitle">Change Password</span>
+            <span aria-hidden="true">+</span>
+          </button>
+
+          <form id="accountPasswordForm" class="password-collapse" autocomplete="off">
+            <div class="two-column">
+              <label>
+                <span>Current Password</span>
+                <input id="currentUserPassword" name="currentUserPassword" type="password" required />
+              </label>
+
+              <label>
+                <span>New Password</span>
+                <input id="newUserLoginPassword" name="newUserLoginPassword" type="password" minlength="3" required />
+              </label>
+            </div>
+
+            <button class="secondary" type="submit">Change Password</button>
+            <p class="helper-text" id="accountPasswordMessage"></p>
+          </form>
+        </section>
+
+        <section class="entry-panel" aria-labelledby="formTitle">
+        <div class="section-heading">
+          <h2 id="formTitle">User Stock Entry</h2>
+          <span id="recordCount">0 saved</span>
+        </div>
+
+        <form id="clientForm" autocomplete="off">
+          <input id="clientCode" name="clientCode" type="hidden" />
+          <datalist id="clientCodeOptions"></datalist>
+
+          <div class="broker-display" id="stockBrokerText">Broker: Not assigned</div>
+
+<label class="share-search-field">
+            <span>NSE Share Search</span>
+            <input id="shareName" name="shareName" type="text" list="shareOptions" placeholder="Type NSE share name or symbol" required />
+            <input id="shareSymbol" name="shareSymbol" type="hidden" />
+            <datalist id="shareOptions"></datalist>
+            <p class="helper-text" id="shareStatus">Select an NSE share from search suggestions to fetch live price.</p>
+          </label>
+
+          <div class="two-column">
+            <label>
+              <span>Starting Price</span>
+              <input id="startingPrice" name="startingPrice" type="number" min="0" step="0.01" inputmode="decimal" required />
+            </label>
+
+            <label>
+              <span>Lower Limit</span>
+              <input id="lowerLimit" name="lowerLimit" type="number" min="0" step="0.01" inputmode="decimal" required />
+            </label>
+          </div>
+
+          <label>
+            <span>Order Qty</span>
+            <input id="orderQty" name="orderQty" type="number" min="1" step="1" inputmode="numeric" required />
+          </label>
+
+          <div class="two-column">
+            <label>
+              <span>Buy Entry Step</span>
+              <input id="buyEntryStep" name="buyEntryStep" type="number" min="0" step="0.01" inputmode="decimal" required />
+            </label>
+
+            <label>
+              <span>Buy Exit Step</span>
+              <input id="buyExitStep" name="buyExitStep" type="number" min="0" step="0.01" inputmode="decimal" required />
+            </label>
+          </div>
+
+          <div class="fund-preview" id="fundPreview" aria-live="polite">
+            <span>52 Week High</span>
+            <strong id="weekHighPreview">-</strong>
+            <span>52 Week Low</span>
+            <strong id="weekLowPreview">-</strong>
+            <span>Estimated Entries</span>
+            <strong id="entryCountPreview">-</strong>
+            <small class="fund-note">First entry starts at Starting Price minus Buy Entry Step. Partial final steps are not counted.</small>
+            <span>Total Fund Deployed</span>
+            <strong id="totalFundPreview">-</strong>
+            <span>Average Entry Price</span>
+            <strong id="avgPricePreview">-</strong>
+            <span>Profit Per Step</span>
+            <strong id="profitPerStepPreview">-</strong>
+            <span>Total Profit at Max Entries</span>
+            <strong id="totalProfitPreview">-</strong>
+          </div>
+
+          <div class="actions">
+            <button class="secondary" id="clearBtn" type="button">Clear</button>
+            <button class="primary" type="submit">Save Stock Entry</button>
+          </div>
+        </form>
+      </section>
+
+        <section class="records-panel" aria-labelledby="recordsTitle">
+        <div class="section-heading">
+          <h2 id="recordsTitle">Saved Stock Entries</h2>
+          <button class="text-button" id="deleteAllBtn" type="button">Delete All</button>
+        </div>
+        <div class="empty-state" id="emptyState">No records saved yet.</div>
+        <div class="records-list" id="recordsList"></div>
+        </section>
+      </div>
+
+    </main>
+
+    <template id="recordTemplate">
+      <article class="record-card">
+        <div class="record-header">
+          <div>
+            <h3 data-field="clientCode"></h3>
+            <p data-field="shareName"></p>
+            <p data-field="createdAt"></p>
+          </div>
+          <button class="delete-record" type="button">Delete</button>
+        </div>
+        <dl>
+          <div>
+            <dt>Broker</dt>
+            <dd data-field="brokerName"></dd>
+          </div>
+          <div>
+            <dt>Share Symbol</dt>
+            <dd data-field="shareSymbol"></dd>
+          </div>
+          <div>
+            <dt>Live Price</dt>
+            <dd data-field="livePrice"></dd>
+          </div>
+          <div>
+            <dt>Starting Price</dt>
+            <dd data-field="startingPrice"></dd>
+          </div>
+          <div>
+            <dt>Lower Limit</dt>
+            <dd data-field="lowerLimit"></dd>
+          </div>
+          <div>
+            <dt>Order Qty</dt>
+            <dd data-field="orderQty"></dd>
+          </div>
+          <div>
+            <dt>Buy Entry Step</dt>
+            <dd data-field="buyEntryStep"></dd>
+          </div>
+          <div>
+            <dt>Buy Exit Step</dt>
+            <dd data-field="buyExitStep"></dd>
+          </div>
+          <div>
+            <dt>Estimated Entries</dt>
+            <dd data-field="entryCount"></dd>
+          </div>
+          <div>
+            <dt>Total Fund Deployed</dt>
+            <dd data-field="totalFund"></dd>
+          </div>
+          <div>
+            <dt>Average Entry Price</dt>
+            <dd data-field="avgPrice"></dd>
+          </div>
+          <div>
+            <dt>Profit Per Step</dt>
+            <dd data-field="profitPerStep"></dd>
+          </div>
+          <div>
+            <dt>Total Profit at Max Entries</dt>
+            <dd data-field="totalProfit"></dd>
+          </div>
+        </dl>
+      </article>
+    </template>
+
+    <script src="app.js?v=quantlab-52week-20260618"></script>
+  </body>
+</html>
+
+
+
+

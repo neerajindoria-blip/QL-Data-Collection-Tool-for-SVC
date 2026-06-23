@@ -1,0 +1,108 @@
+{
+  "users": [
+    {
+      "code": "ADMIN",
+      "name": "Admin",
+      "passwordHash": "240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9",
+      "role": "admin",
+      "createdAt": "2026-06-13T09:33:35Z"
+    },
+    {
+      "code": "ZMZ0004",
+      "name": "Richa Sharma",
+      "passwordHash": "83e399cd18f11b95173ba72a9bbd1d55232b531f7d898b4256450de4390d281b",
+      "role": "user",
+      "createdAt": "2026-06-13T09:58:17Z"
+    },
+    {
+      "code": "ZMZ0002",
+      "name": "Neeraj Indoria",
+      "passwordHash": "335af9650417f2a6fcdcfe22e49fa0ffe685de875d4bcecab43611c6db01948c",
+      "role": "user",
+      "createdAt": "2026-06-13T09:58:33Z"
+    }
+  ],
+  "records": [
+    {
+      "id": "ocySplPqt1hJqp444u7oOw",
+      "createdAt": "2026-06-13T11:22:09Z",
+      "ownerCode": "ZMZ0004",
+      "clientCode": "ZMZ0004",
+      "shareName": "PUNJAB NATIONAL BANK",
+      "shareSymbol": "PNB.NS",
+      "livePrice": "106.88",
+      "livePriceAt": "2026-06-13T11:22:09Z",
+      "startingPrice": "106.88",
+      "lowerLimit": "100.00",
+      "orderQty": "2",
+      "buyEntryStep": "1.50",
+      "buyExitStep": "2.50"
+    },
+    {
+      "id": "WYFHMuRymgV_TUFwy7HTQQ",
+      "createdAt": "2026-06-13T11:21:13Z",
+      "ownerCode": "ZMZ0004",
+      "clientCode": "ZMZ0004",
+      "shareName": "RELIANCE INDUSTRIES LTD",
+      "shareSymbol": "RELIANCE.NS",
+      "livePrice": "1293.00",
+      "livePriceAt": "2026-06-13T11:21:13Z",
+      "startingPrice": "1293.00",
+      "lowerLimit": "1400.00",
+      "orderQty": "1",
+      "buyEntryStep": "4.00",
+      "buyExitStep": "5.00"
+    },
+    {
+      "id": "IL367HMiCST5g8AViJmGig",
+      "createdAt": "2026-06-13T11:20:13Z",
+      "ownerCode": "ZMZ0004",
+      "clientCode": "ZMZ0004",
+      "shareName": "ITC LTD",
+      "shareSymbol": "ITC.NS",
+      "livePrice": "285.10",
+      "livePriceAt": "2026-06-13T11:20:13Z",
+      "startingPrice": "285.00",
+      "lowerLimit": "250.00",
+      "orderQty": "10",
+      "buyEntryStep": "2.00",
+      "buyExitStep": "2.00"
+    },
+    {
+      "id": "iOYuI5RHGI3A-iTHgDuCZA",
+      "createdAt": "2026-06-13T11:00:00Z",
+      "ownerCode": "ZMZ0004",
+      "clientCode": "ZMZ0004",
+      "shareName": "BOB",
+      "startingPrice": "400.00",
+      "lowerLimit": "250.00",
+      "orderQty": "10",
+      "buyEntryStep": "5.00",
+      "buyExitStep": "5.00"
+    },
+    {
+      "id": "LCCXBwvkF7xSO-dp3NW_rg",
+      "createdAt": "2026-06-13T10:59:46Z",
+      "ownerCode": "ZMZ0004",
+      "clientCode": "ZMZ0004",
+      "shareName": "INFY",
+      "startingPrice": "1400.00",
+      "lowerLimit": "1000.00",
+      "orderQty": "1",
+      "buyEntryStep": "50.00",
+      "buyExitStep": "50.00"
+    },
+    {
+      "id": "_bdXhUFz4fFpIs1fq1lPvA",
+      "createdAt": "2026-06-13T10:57:22Z",
+      "ownerCode": "ZMZ0002",
+      "clientCode": "ZMZ0002",
+      "shareName": "RELIANCE",
+      "startingPrice": "1400.00",
+      "lowerLimit": "1200.00",
+      "orderQty": "5",
+      "buyEntryStep": "25.00",
+      "buyExitStep": "25.00"
+    }
+  ]
+}
